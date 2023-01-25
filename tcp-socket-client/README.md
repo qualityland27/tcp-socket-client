@@ -1,24 +1,35 @@
 # tcp-socket-client
+TCP Socket Client with Electron and Vue js
 
-## Project setup
-```
-npm install
-```
+### create vue-cli project with name
+vue create tcp-socket-client
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### go into folder
+cd tcp-socket-client
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### install bootsrap 
+yarn add bootstrap@next
 
-### Lints and fixes files
-```
-npm run lint
-```
+### install and invoke the generator of vue-cli-plugin-electron-builder by running:
+vue add electron-builder
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### add lines into vue.config.js
+module.exports = {
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true
+    }
+  }
+}
+
+### in background.js make shure that node is integrated 
+function createWindow () {
+  // Create the browser window.
+  win = new BrowserWindow({ width: 800, height: 600, webPreferences: {
+    // Use pluginOptions.nodeIntegration, leave this alone
+    // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+    nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
+  } })
+
+
+
